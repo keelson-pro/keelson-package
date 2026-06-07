@@ -1,0 +1,50 @@
+apiVersion: kaptain.org/1.19
+kind: kubernetes-bundle-docker-dockerfile
+metadata:
+  description: "Keelson package - Keelson scripts laid into the Keelson base image and bundled with the install manifests and contract+defaults for cluster install"
+
+spec:
+  layers:
+    - ghcr.io/kube-kaptain/layer/layer-github-flow-strict:[1.3,2)
+
+  # Pull in the centrally managed reusable manifests that define how to run the image
+  templates:
+    - keelson:[1.2]
+
+  main:
+    docker:
+      platform: linux/amd64,linux/arm64
+      dockerfile:
+        subPathLinuxAmd64: src/docker
+        subPathLinuxArm64: src/docker
+    hooks:
+      preTaggingTests: .github/bin/run-tests.bash
+      # Writes Keelson/PackageVersion and KeelsonScriptsVersion into the per-arch
+      # docker config dirs so the Dockerfile FROM line and any token-bearing
+      # manifests get the matching scripts release wired in at build time
+      preDockerPrepare: .github/bin/write-config-tokens.bash
+      # Injects keelson-package lineage annotations into the template manifests
+      prePackagePrepare: .github/bin/inject-package-metadata.bash
+
+  global:
+    release:
+      versioning:
+        # Release version format: X.X.Y.Y.Z (5 parts)
+        #   X.X = the keelson template version (from KaptainPM.yaml)
+        #   Y.Y = first two part of the keelson-base-image version (from Dockerfile)
+        #   Z   = auto-incrementing patch
+        maxParts: '5'
+        strategy: compound-file-pattern-match
+        patternType: custom
+        source:
+          subPath: '.'
+          fileName: KaptainPM.yaml
+          # Whole-line anchored: build runs `grep -E` then `sed -E s/PATTERN/\1/`
+          pattern: '^[[:space:]]*- keelson:\[([0-9]+\.[0-9]+)\]$'
+          prefixParts: '2'
+        sourceTwo:
+          subPath: src/docker
+          fileName: Dockerfile
+          # No `/` in pattern: build's `sed s/PATTERN/\1/` uses `/` as delimiter
+          pattern: '^FROM[[:space:]]+.*keelson-base-image:([0-9]+\.[0-9]+\.[0-9]+)$'
+          prefixParts: '2'
