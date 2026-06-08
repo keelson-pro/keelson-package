@@ -16,7 +16,7 @@
 FROM ghcr.io/keelson-pro/keelson/keelson:${KeelsonScriptsVersion} AS KEELSON_SCRIPTS
 # Always use the most specific tag possible
 
-FROM ghcr.io/keelson-pro/keelson/keelson-base-image:1.36.3
+FROM ghcr.io/keelson-pro/keelson/keelson-base-image:1.35.4
 # Always use the most specific tag possible
 
 # Lay the scripts on the path the base image already exports as ${PATH}
