@@ -28,7 +28,7 @@ spec:
 
   global:
     release:
-      additionalBranches: main-1.34
+      additionalBranches: main-1.33
       versioning:
         # Release version format: X.X.Y.Y.Z (5 parts)
         #   X.X = the keelson template version (from KaptainPM.yaml)
