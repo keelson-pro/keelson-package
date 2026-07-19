@@ -3,8 +3,9 @@
 # Copyright (c) 2026 Keelson contributors (Fred Cooke)
 #
 # prePackagePrepare hook: injects keelson-package lineage annotations
-# into every staged manifest doc. Token writing is handled separately by
-# write-config-tokens.bash at preDockerPrepare time.
+# into every staged manifest doc. No token writing here: the package
+# version token lives in src/config/Keelson/PackageVersion and the
+# Dockerfile scripts pin uses the built-in ${TemplateKeelsonVersion}.
 #
 # Runs here (not in KaptainPM.yaml) because the manifests arrive via
 # templates - we own the resulting bundle so we add our own values on
