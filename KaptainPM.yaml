@@ -19,14 +19,14 @@ spec:
         subPathLinuxArm64: src/docker
     hooks:
       preTaggingTests: .github/bin/run-tests.bash
-      # Writes Keelson/PackageVersion and KeelsonScriptsVersion into the per-arch
-      # docker config dirs so the Dockerfile FROM line and any token-bearing
-      # manifests get the matching scripts release wired in at build time
-      preDockerPrepare: .github/bin/write-config-tokens.bash
       # Injects keelson-package lineage annotations into the template manifests
       prePackagePrepare: .github/bin/inject-package-metadata.bash
 
   global:
+    tokens:
+      # Two passes so the ${Version} inside src/config/Keelson/PackageVersion
+      # resolves after the config file itself is picked up as a token
+      substitutionPasses: '2'
     release:
       additionalBranches: main-1.34
       versioning:
