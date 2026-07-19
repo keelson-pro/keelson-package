@@ -9,7 +9,8 @@ manifests and contract+defaults so consumers get a working install with no confi
 
 - **`src/docker/Dockerfile`** - multi-stage multi-arch build, inspect the file for more detail
 - **`KaptainPM.yaml`** - declares the build kind, the templates pulled from the keelson project, the metadata-injection hook, and the 5-part release versioning scheme.
-- **`.github/bin/inject-package-metadata.bash`** - prePackagePrepare hook. Adds keelson-package lineage annotations to the template manifests and writes the `Keelson/PackageVersion` and `KeelsonScriptsVersion` tokens so the bundled manifests stay locked to the scripts release we packaged.
+- **`.github/bin/inject-package-metadata.bash`** - prePackagePrepare hook. Adds keelson-package lineage annotations to the template manifests.
+- **`src/config/Keelson/PackageVersion`** - config token holding `${Version}`; with two substitution passes it resolves to this package's version in the bundled manifests. The Dockerfile scripts pin comes from the built-in `${TemplateKeelsonVersion}` token instead - no hook needed for either.
 
 
 ## Release Versioning
