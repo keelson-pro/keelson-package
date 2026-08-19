@@ -9,7 +9,7 @@ spec:
 
   # Pull in the centrally managed reusable manifests that define how to run the image
   templates:
-    - keelson:[1.8]
+    - keelson:[1.10]
 
   main:
     docker:
