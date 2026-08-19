@@ -1,15 +1,15 @@
-apiVersion: kaptain.org/1.22
+apiVersion: kaptain.org/1.28
 kind: kubernetes-bundle-docker-dockerfile
 metadata:
   description: "Keelson package - Keelson scripts laid into the Keelson base image and bundled with the install manifests and contract+defaults for cluster install"
 
 spec:
   layers:
-    - ghcr.io/kube-kaptain/layer/layer-github-flow-strict:[1.3,2)
+    - ghcr.io/kube-kaptain/layer/layer-github-flow-strict:[1.3]
 
   # Pull in the centrally managed reusable manifests that define how to run the image
   templates:
-    - keelson:[1.8]
+    - keelson:[1.10]
 
   main:
     docker:
