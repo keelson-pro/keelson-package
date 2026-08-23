@@ -25,5 +25,9 @@ FROM ghcr.io/keelson-pro/keelson/keelson-base-image:1.34.8
 # Lay the scripts on the path the base image already exports as ${PATH}
 COPY --from=KEELSON_SCRIPTS / /keelson/bin
 
+# Always accurate versions based on what was actually built and included.
+ENV KEELSON_VERSION=${TemplateKeelsonVersion}
+ENV KEELSON_PACKAGE_VERSION=${Version}
+
 # Drop root - KEELSON_USER_ID is exported by the base image
 USER ${KEELSON_USER_ID}
