@@ -22,3 +22,9 @@ Five parts: `X.X.Y.Y.Z`.
 - `Z` is the auto-incrementing patch, usually 1 since any change to the dependencies changes the base
 
 Bumping either the template version or the base image bumps the corresponding part. Backport branches `main-1.35`, `main-1.34` etc. follow the same scheme against their own base image line.
+
+
+# License
+
+Keelson is MIT licensed except for `*.md` Markdown docs which are CC-BY-SA-4.0
+For more detail see [LICENSE.md](https://github.com/keelson-pro/.github/blob/main/LICENSE.md).
