@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # SPDX-License-Identifier: MIT
-# Copyright (c) 2026 Keelson contributors (Fred Cooke)
+# Copyright (c) 2025-2026 Keelson contributors (Fred Cooke)
 #
 # prePackagePrepare hook: injects keelson-package lineage annotations
 # into every staged manifest doc. No token writing here: the package
