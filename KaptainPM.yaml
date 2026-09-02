@@ -5,7 +5,7 @@ metadata:
 
 spec:
   layers:
-    - ghcr.io/kube-kaptain/layer/layer-github-flow-strict:[1.3]
+    - ghcr.io/kube-kaptain/layerset/layerset-cluster-use-project:[1.1]
 
   # Pull in the centrally managed reusable manifests that define how to run the image
   templates:
