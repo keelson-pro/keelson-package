@@ -1,4 +1,4 @@
-apiVersion: kaptain.org/1.28
+apiVersion: kaptain.org/1.29
 kind: kubernetes-bundle-docker-dockerfile
 metadata:
   description: "Keelson package - Keelson scripts laid into the Keelson base image and bundled with the install manifests and contract+defaults for cluster install"
