@@ -2,14 +2,15 @@ name: Kubernetes Bundle - Docker Dockerfile
 
 on:
   push:
-    branches: [main]
+    branches: [main-1.36]
   pull_request:
-    branches: [main]
+    branches: [main-1.36]
 
 jobs:
   build:
-    uses: kube-kaptain/buildon-github-actions/.github/workflows/kubernetes-bundle-docker-dockerfile.yaml@1.1.62
+    uses: kube-kaptain/buildon-github-actions/.github/workflows/kubernetes-bundle-docker-dockerfile.yaml@1.2.10
     permissions:
       contents: write
       packages: write
       checks: write
+      id-token: write

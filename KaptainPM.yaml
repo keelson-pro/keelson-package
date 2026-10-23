@@ -28,6 +28,7 @@ spec:
       # resolves after the config file itself is picked up as a token
       substitutionPasses: '2'
     release:
+      additionalBranches: main-1.36
       versioning:
         # Release version format: X.X.Y.Y.Z (5 parts)
         #   X.X = the keelson template version (from KaptainPM.yaml)
